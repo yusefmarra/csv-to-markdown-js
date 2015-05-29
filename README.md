@@ -55,7 +55,10 @@ Here you'll _have_ to determine the widths of each column dynamically.
 
 When you run `node tableize.js data/companies.csv`, your program should read the file `data/companies.csv` and display the output.
 
-See https://nodejs.org/docs/latest/api/process.html
+See
+
+- https://nodejs.org/docs/latest/api/process.html
+- https://nodejs.org/api/fs.html#fs_fs_readfilesync_filename_options
 
 **Users can parse CSV files that contain quoted values**
 
@@ -74,8 +77,37 @@ Your code should be able to correctly handle CSV files that have values that con
 
 ```
 Name,Suffix,Slogan,DUNS Number
-"Sipes, Yundt and Johnston",Group,Right-sized
-24 hour knowledge user,55-244-3053
+"Sipes, Yundt and Johnston",Group,"Right-sized
+24 hour knowledge user",55-244-3053
 ```
 
-Notice how the example above represents just a single line of CSV.  If you determine what a 'row' is by splitting on newlines, you'll get an incorrect result.
+Notice how the example above represents just a single line of CSV.  If you determine what a 'row' is by splitting on newlines, you'll get an incorrect result, since it's valid for 'cells' to have newlines, as long as they are surrounded by quotes.
+
+See http://www.boyet.com/articles/csvparser.html
+
+**Users can produce HTML documents**
+
+When you run your code, it should create a file named `output.html` in the same directory as `tableize.js`.  This `output.html` file should be a valid HTML document, with the data from the CSV displayed as a table, like so:
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Header 1</th>
+      <th>Header 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>First</td>
+      <td>Row</td>
+    </tr>
+    <tr>
+      <td>Second</td>
+      <td>Row</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+See https://nodejs.org/api/fs.html#fs_fs_writefilesync_filename_data_options
